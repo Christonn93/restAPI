@@ -11,11 +11,11 @@ const fridgeRoutes = require("./src/internalControl/fridgeData/routes");
 const recipeRoutes = require("./src/recipe/routes");
 
 const app = express();
-const port = 3200;
+const port = process.env.PORT || 3200;
 
 app.use(express.json());
 
-app.get("/api/v1/", (req, res) => {
+app.get("/matkontrollen/api/v1/", (req, res) => {
  res.status(200).send("Api is responding with connected");
  res.status(201).send("Api is responding with success");
  res.status(404).send("Api is responding with fault 404");
@@ -24,41 +24,41 @@ app.get("/api/v1/", (req, res) => {
 // ---- Routes for system ---- //
 
 // Routes for user data
-app.use("/api/v1/users/", usersRoutes);
+app.use("/matkontrollen/api/v1/users/", usersRoutes);
 
 // Routes for employee data
-app.use("/api/v1/employee/", employeeRoutes);
+app.use("/matkontrollen/api/v1/employee/", employeeRoutes);
 
 // ---- Routes for booking system ---- //
 
 // Routes for booking data
-app.use("/api/v1/booking/", bookingRoutes);
+app.use("/matkontrollen/api/v1/booking/", bookingRoutes);
 
 // Routes for customer data
-app.use("/api/v1/customer/", customerRoutes);
+app.use("/matkontrollen/api/v1/customer/", customerRoutes);
 
 // ---- Routes for ordering system ---- //
 
 // Routes for supplier data
-app.use("/api/v1/supplier/", supplierRoutes);
+app.use("/matkontrollen/api/v1/supplier/", supplierRoutes);
 
 // Routes for orders data
-app.use("/api/v1/orders/", ordersRoutes);
+app.use("/matkontrollen/api/v1/orders/", ordersRoutes);
 
 // Routes for products data
-app.use("/api/v1/products/", productsRoutes);
+app.use("/matkontrollen/api/v1/products/", productsRoutes);
 
 // ---- Routes for internal control system ---- //
 
 // Routes for internalControl data
-app.use("/api/v1/internalControl/", internalControlRoutes);
+app.use("/matkontrollen/api/v1/internalControl/", internalControlRoutes);
 
 // Routes for fridge data
-app.use("/api/v1/internalControl/fridge/", fridgeRoutes);
+app.use("/matkontrollen/api/v1/internalControl/fridge/", fridgeRoutes);
 
 // ---- Routes for recipe system ---- //
 
 // Routes for recipe data
-app.use("/api/v1/recipe/", recipeRoutes);
+app.use("/matkontrollen/api/v1/recipe/", recipeRoutes);
 
 app.listen(port, () => console.log(`app listening to port ${port}`));
