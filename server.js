@@ -1,4 +1,6 @@
 const express = require("express");
+const { verifyJwt } = require("./auth/checkAuth");
+
 const usersRoutes = require("./src/users/routes");
 const employeeRoutes = require("./src/employee/routes");
 const bookingRoutes = require("./src/booking/routes");
@@ -9,6 +11,7 @@ const productsRoutes = require("./src/products/routes");
 const internalControlRoutes = require("./src/internalControl/routes");
 const fridgeRoutes = require("./src/internalControl/fridgeData/routes");
 const recipeRoutes = require("./src/recipe/routes");
+const loginRoutes = require("./src/login/routes");
 
 const app = express();
 const port = process.env.PORT || 3200;
@@ -22,6 +25,8 @@ app.get("/matkontrollen/api/v1/", (req, res) => {
 });
 
 // ---- Routes for system ---- //
+
+app.use("/matkontrollen/api/v1/auth/login", verifyJwt, loginRoutes);
 
 // Routes for user data
 app.use("/matkontrollen/api/v1/users/", usersRoutes);
