@@ -7,6 +7,7 @@ const supplierRoutes = require("./src/suppliers/routes");
 const ordersRoutes = require("./src/orders/routes");
 const productsRoutes = require("./src/products/routes");
 const internalControlRoutes = require("./src/internalControl/routes");
+const fridgeRoutes = require("./src/internalControl/fridgeData/routes");
 const recipeRoutes = require("./src/recipe/routes");
 
 const app = express();
@@ -14,7 +15,7 @@ const port = 3200;
 
 app.use(express.json());
 
-app.get("/", (req, res) => {
+app.get("/api/v1/", (req, res) => {
  res.status(200).send("Api is responding with connected");
  res.status(201).send("Api is responding with success");
  res.status(404).send("Api is responding with fault 404");
@@ -51,6 +52,9 @@ app.use("/api/v1/products/", productsRoutes);
 
 // Routes for internalControl data
 app.use("/api/v1/internalControl/", internalControlRoutes);
+
+// Routes for fridge data
+app.use("/api/v1/internalControl/fridge/", fridgeRoutes);
 
 // ---- Routes for recipe system ---- //
 
